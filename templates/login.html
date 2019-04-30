@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="login-content">
+        <form method="post" class="w-full max-w-xs">
+            <h2 class="login-title">Daxil ol</h2>
+            <hr class="underline">
+            {% from "includes/formhelpers.html" import render_field %}
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-3/3">
+                    {{ render_field(form.username,class="bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple",id="inline-full-name",type="text") }}
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-3/3">
+                    {{ render_field(form.password,class="bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple",id="inline-username", type="password") }}
+                </div>
+            </div>
+            <div class="md:flex md:items-center">
+                <div class="md:w-3/3">
+                    <button class="btn btn-primary" type="submit">
+                        Daxil ol
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

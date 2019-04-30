@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        .max-w-sm {
+            margin-bottom: 20px;
+            /*max-width: 100% !important;*/
+        }
+
+        .text-base {
+            word-break: break-all;
+        }
+
+        #tag {
+            margin: 10px;
+            background-color: black;
+            color: white;
+        }
+    </style>
+    <div class="jumbotron text-center">
+        <h3>
+            Aviasiya bloguna xoş gəlmisiniz.
+        </h3>
+        <p id="intro"> Bu blog aviasiya həvəskarlarına lazım olan hər bir məlumatı tapmaqda kömək etmək məqsədilə
+            yaradılmışdır. </p>
+    </div>
+
+    <div class="container">
+        <form class="col-md-12 d-flex justify-content-center " action="/search" method="post">
+
+            <input style="border-radius: 20px!important;" class="form-control mr-sm-0" type="search" placeholder="Axtar..." aria-label="Search">
+            <button style="padding: 5px 25px 5px 25px; margin: 0 0 0 20px" class="btn btn-outline-success my-2 my-sm-0" type="submit">Axtar</button>
+
+        </form>
+
+
+        <div class="row">
+            {% for article in articles %}
+                <!----------Card 1-------------->
+                <div class="col-md-6 d-flex justify-content-center">
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <img class="w-full" src="{{ article.Image }}"
+                             alt="Image">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2">{{ article.Title }}</div>
+                            <!-----------article content from database------------>
+                            {% if article.Content|striptags|length>300 %}
+                                <div class="text-grey-darker text-base">
+
+                                    {{ article.Content[0:300]|striptags }}<a href="/details/{{ article.Id }}">&nbsp;
+                                    Read more...</a>
+
+                                </div>
+                            {% else %}
+                                <div class="text-grey-darker text-base">
+
+                                    {{ article.Content|striptags }}<h6>&nbsp;</h6><a href="/details/{{ article.Id }}">&nbsp;
+                                    Read more...</a>
+
+                                </div>
+                            {% endif %}
+
+                            <!-----------article content from database------------>
+                        </div>
+                        <div class="px-6 py-4">
+                    <span
+                            class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"
+                            id="tag">{{ article.Author }}</span>
+                            <span
+                                    class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"
+                                    id="tag">{{ article.Created_at.strftime("%m-%d-%Y, %H:%M") }}</span>
+
+                        </div>
+                    </div>
+                </div>
+                <!----------Card 1-------------->
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

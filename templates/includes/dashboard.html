@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+    <h3>Kontrol paneli</h3>
+    <br>
+    <p> Xoş gəldiniz, {{ session["username"].title() }}</p>
+    <hr>
+    <a href="../addarticle" class="btn btn-success" style="margin: 5px;"><i class="fas fa-share-alt"></i> Məqalə paylaş</a>
+    {% if article %}
+        <hr>
+        <h3>Sizin məqalələriniz</h3>
+        <br>
+
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Başlıq</th>
+                <th scope="col">Tarix</th>
+                <th scope="col">Əməliyyat</th>
+            </tr>
+            </thead>
+            <!------------Table body------------>
+            <tbody>
+            {% for data in article %}
+
+                <tr>
+                    <th scope="row"><a href="/articles/{{ data.Id }}">{{ data.Title }}</a></th>
+                    <td>{{ data.Created_at.strftime("%m-%d-%Y, %H:%M") }}</td>
+
+                    <td colspan="2"><a href="/update/{{ data.Id }}" style="margin-top: 3px;" class="btn btn-success"><i
+                            class="fas fa-pencil-alt"></i> Redaktə et</a>
+
+                        <a href="/delete/{{ data.Id }}" style="margin-top: 3px;" class="btn btn-danger"><i
+                                class="fas fa-trash"></i> Sil</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+            <!------------Table body------------>
+        </table>
+
+    {% else %}
+        <div class="alert alert-danger">
+            Hörmətli {{ session["username"] }}, sizin məqaləniz mövcud deyil.
+        </div>
+
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}

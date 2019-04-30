@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+
+            margin-bottom: 100px;
+
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            height: 70px;
+            width: 100%;
+            line-height: 50px;
+            vertical-align: middle;
+            background-color: #167258;
+
+        }
+
+        .nav-item:hover {
+            background-color: #0f4f38;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            background-color: #167258 !important;
+            z-index: 999;
+        }
+
+        .navbar-expand-lg {
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: white !important;
+            margin-right: 8px;
+        }
+
+        .text-muted {
+            color: white !important;
+            margin-top: 15px;
+        }
+
+
+        .social-icons li {
+            vertical-align: top;
+            display: inline;
+            height: 100px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+
+        }
+
+
+        .dropdown-item:hover {
+            background-color: #0f4f38;
+            color: white;
+        }
+
+
+        .social {
+            width: 200px;
+            height: 220px;
+            position: fixed;
+            margin-top: 250px;
+            z-index: 999;
+            perspective: 1000px
+        }
+
+        .social li a {
+            display: block;
+            height: 40px;
+            margin-top: 5px;
+            width: 40px;
+            background: #222;
+            border-bottom: 1px solid #333;
+            font: normal normal normal 16px/20px 'FontAwesome', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: background .5s ease .300ms
+        }
+
+        .social li:first-child a:hover {
+            background: #3b5998
+        }
+
+        .social li:nth-child(2) a:hover {
+            background: #00acee
+        }
+
+        .social li:nth-child(3) a:hover {
+            background: #ea4c89
+        }
+
+        .social li:nth-child(4) a:hover {
+            background: #dd4b39
+        }
+
+        .social li:first-child a {
+            border-radius: 0 5px 0 0
+        }
+
+        .social li:last-child a {
+            border-radius: 0 0 5px 0
+        }
+
+        .social li a span {
+            width: 100px;
+            float: left;
+            text-align: center;
+            background: #222;
+            color: #fff;
+            margin: -25px 74px;
+            padding: 8px;
+            transform-origin: 0;
+            visibility: hidden;
+            opacity: 0;
+            transform: rotateY(45deg);
+            border-radius: 5px;
+            transition: all .5s ease .300ms
+        }
+
+        .social li span:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: -20px;
+            top: 7px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid #222;
+            border-bottom: 10px solid transparent;
+            border-top: 10px solid transparent;
+        }
+
+        .social li a:hover span {
+            visibility: visible;
+            opacity: 1;
+            transform: rotateY(0)
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <i class="fas fa-plane-arrival"> <br> </i>
+        AviaBlog
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Ana səhifə</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../about">Haqqımızda</a>
+            </li>
+
+            <!----Session control---->
+            {% if session["logged_in"]==True %}
+                <li class="nav-item">
+                    <a class="nav-link" href="../dashboard"><i class="fas fa-chart-line"></i> Kontrol paneli</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../logout"><i class="fas fa-sign-out-alt"></i> Çıxış</a>
+                </li>
+
+            {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../login"><i class="fas fa-sign-in-alt"></i> Giriş</a>
+                </li>
+
+            {% endif %}
+            <!----End session control---->
+
+            <li class="nav-item">
+                <a class="nav-link" href="../register"><i class="fas fa-user-plus"></i> Qeydiyyat</a>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</nav>
+<footer class="footer">
+    <div class="container text-center justify-content-center">
+        <span class="text-muted justify-content-center">Developed By Garashov Bakhtiyar © 2019.</span>
+    </div>
+</footer>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+<ul class='social'>
+    <li>
+        <a class="fa fa-facebook" target="_blank" href="https://www.facebook.com/bextiyar.qov.1">
+            <span>Facebook</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="fa fa-twitter" href="#">
+            <span>Twitter</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="fa fa-instagram" target="_blank" href="https://www.instagram.com/bakhtiyar.q/">
+            <span>Instagram</span>
+        </a>
+    </li>
+    <li>
+        <a class="fa fa-github" target="_blank" href="https://github.com/Bakhtiyar-Garashov">
+            <span>Github</span>
+        </a>
+    </li>
+</ul>
+
+</body>
+</html>

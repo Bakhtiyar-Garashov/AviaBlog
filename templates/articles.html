@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if article %}
+        <h4>{{ article.Title }}</h4>
+        <hr>
+        <h1>Məqalə:</h1> {{ article.Content|safe }}
+        <hr>
+        <strong>Müəllif: </strong> {{ article.Author }}  <strong>Tarix: </strong>
+        {{ article.Created_at.strftime("%m-%d-%Y, %H:%M") }}
+
+
+    {% else %}
+        <div class="alert alert-warning">Belə məqalə mövcud deyil</div>
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}
